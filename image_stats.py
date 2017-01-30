@@ -27,20 +27,28 @@ t=0
 
 for image in image_files:
      n+=1
-     if 'PNG' in image:
+     if 'PNG' in image.upper():
          p+=1
-     if "JPG" in image or 'jpg' in image or 'jpeg' in image or 'JPEG' in image: #how can I take into account the case?
+     if "JPG" in image.upper():
          j+=1
-     if 'tiff' in image or 'TIFF' in image or 'TIF' in image or 'tif' in image:
+     if 'TIFF' in image.upper():
          t+=1
 print "There are " +str(n) + " images."
 print "There are " + str(j) + " JPG images, " + str(p) + " PNG images and " + str(t) + " TIFF images."
 print "Directories which need fixing are " +str(list(set(fix)))
 
-def image_size(image):
+sizes = [[] for i in range(2)] #how do I create a matrix that is indexed?
+for image in image_files:
     im = Image.open(image)
     width, height = im.size
-    print im.size
-    print width*height
+    sizes[0].append(image)
+    sizes[1].append(width*height)
 
-image_size("qc_1.PNG")
+
+
+#def image_size(image):
+#   im = Image.open(image)
+#   width, height = im.size
+#   print im.size
+#   print width*height
+# image_size("qc_1.PNG")
